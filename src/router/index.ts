@@ -3,7 +3,7 @@ import DefaultLayout from "../layouts/DefaultLayout.vue";
 import commonRoutes from "./commonRoutes.ts";
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHistory('/test-frontend/'),
     routes: [
         {
             path: '',
