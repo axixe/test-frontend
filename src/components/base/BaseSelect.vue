@@ -1,34 +1,36 @@
-<!--<template>-->
-<!--  <label class="checkbox">-->
-<!--    <span v-if="label" class="checkbox__label">{{ label }}</span>-->
+<template>
+  <label class="select">
+    <span v-if="field.label" class="select__label">{{ field.label }}</span>
 
-<!--    <input-->
-<!--        v-model="model"-->
-<!--        class="checkbox__element"-->
-<!--        :name="name"-->
-<!--        type="checkbox"-->
-<!--        :required="required"-->
-<!--        :readonly="readonly"-->
-<!--    />-->
-<!--  </label>-->
-<!--</template>-->
+    <select
+      v-model="model"
+      class="select__element"
+      :name="field.name"
+      :required="field.required"
+    >
+      <option
+        v-for="option in field.options"
+        class="select__option"
+        :value="option.value"
+        :key="option.value"
+      >
+        {{ option.label }}
+      </option>
+    </select>
+  </label>
+</template>
 
-<!--<script setup lang="ts">-->
-<!--interface Props {-->
-<!--  label: string-->
-<!--  name: string-->
-<!--  required?: boolean-->
-<!--  readonly?: boolean-->
-<!--}-->
+<script setup lang="ts">
+import type { FormTypes } from "../../global/types/FormTypes.ts";
 
-<!--withDefaults(defineProps<Props>(), {-->
-<!--  required: false,-->
-<!--  readonly: false,-->
-<!--})-->
+interface Props {
+  field: FormTypes
+}
 
-<!--defineModel('model')-->
-<!--</script>-->
+defineProps<Props>()
+const model = defineModel<string | number>()
+</script>
 
-<!--<style scoped lang="scss">-->
+<style scoped lang="scss">
 
-<!--</style>-->
+</style>

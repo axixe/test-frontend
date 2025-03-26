@@ -10,7 +10,6 @@
       :required="field.required"
       :readonly="field.readonly"
       :placeholder="field.placeholder"
-      @input="$emit('update:modelValue', model.value)"
     />
   </label>
 </template>
@@ -23,7 +22,7 @@ interface Props {
 }
 
 defineProps<Props>()
-const model = defineModel('model')
+const model = defineModel<string>()
 </script>
 
 <style scoped lang="scss">

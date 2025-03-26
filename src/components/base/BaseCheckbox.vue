@@ -1,33 +1,27 @@
 <template>
   <label class="checkbox">
-    <span v-if="label" class="checkbox__label">{{ label }}</span>
-
     <input
       v-model="model"
       class="checkbox__element"
-      :name="name"
+      :name="field.name"
       type="checkbox"
-      :required="required"
-      :readonly="readonly"
-      @change="$emit('update:modelValue', model)"
+      :required="field.required"
+      :readonly="field.readonly"
     />
+
+    <span v-if="field.label" class="checkbox__label">{{ field.label }}</span>
   </label>
 </template>
 
 <script setup lang="ts">
+import type { FormTypes } from "../../global/types/FormTypes.ts";
+
 interface Props {
-  label: string
-  name: string
-  required?: boolean
-  readonly?: boolean
+  field: FormTypes
 }
 
-withDefaults(defineProps<Props>(), {
-  required: false,
-  readonly: false,
-})
-
-defineModel('model')
+defineProps<Props>()
+const model = defineModel<boolean>()
 </script>
 
 <style scoped lang="scss">
